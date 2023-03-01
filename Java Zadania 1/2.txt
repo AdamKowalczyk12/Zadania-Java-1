@@ -1,0 +1,190 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package javaapplication.lekcja.pkg2;
+
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ *
+ * @author adamk
+ */
+public class JavaApplicationLekcja2 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) 
+    {
+
+//        int n=10;
+//        
+//        double[] tab = new double[n];  
+//        
+//        Random r = new Random();
+//        
+//        for (int i = 0; i < n; i++) 
+//        {
+//          tab[i]= -5 + r.nextDouble()*10;
+//          System.out.println(tab[i]);
+//        }
+//        
+//        Arrays.sort(tab);
+//        int sum=0;
+//        for (int i = 0; i < n; i++) 
+//        {
+//            System.out.println(tab[i]);
+//            sum+=tab[i];
+//        }
+//        
+//        System.out.println("Srednia: "+ (double)sum/n);
+//          
+//        if (n%2==0)
+//        {
+//            int srodek1= n/2-1;
+//            int srodek2= n/2;
+//            
+//            double mediana=(tab[srodek1]+tab[srodek2])/2.0;
+//            System.out.println("Mediana: "+ mediana);
+//        }
+//        else
+//        {
+//            int srodek= n/2;
+//            System.out.println("Mediana: "+ tab[srodek]);
+//        }
+//        
+//        System.out.println("Min: " + tab[0]);
+//        System.out.println("Max: " + tab[tab.length -1]);
+//        
+//        double p1 = n/4.0;
+//            
+//        if(p1 > n/4)
+//        {
+//            int q1 = n/4 - 1;
+//            int q2 = n/4;
+//              
+//            double kwartyl1 = (tab[q1]+ tab[q2])/2.0;
+//            System.out.println("Kwartyl 1: "+ kwartyl1);
+//        }
+//        else
+//        {
+//            int q1 = n/4-1;
+//            System.out.println("Kwartyl 1"+ tab[q1]);
+//        }
+//        
+//        double p3 = 3*n/4.0;
+//        if (p3 > 3*n/4)
+//        {
+//            int q1 = 3*n/4;
+//            int q2 = 3*n/4+1;
+//              
+//             
+//            double kwartyl3 = (tab[q1]+ tab[q2])/2.0;
+//            System.out.println("Kwartyl 3: "+ kwartyl3);
+//        }
+//        else
+//        {
+//            int q1 = 3*n/4-1;
+//            System.out.println("Kwartyl 3: "+ tab[q1]);
+//        }
+//        
+//        Random r = new Random();
+//      
+//        int[][] tab2 = new int[10][5];
+//        
+//        int maxSuma= Integer.MIN_VALUE; //najmniejsza wartośc jaką int może przyjąć,(nie dawać =0 bo tutaj może byuć ujemna)
+//        int si = 0; //indeks wiersza
+//        
+//        for(int i = 0; i <tab2.length; i++) 
+//        {
+//            int suma=0;
+//            for (int j = 0; j < tab2[i].length; j++)
+//            {  
+//              tab2[i][j] = (int)(r.nextDouble()*20);
+//              System.out.println(tab2[i][j]+ "\t");
+//              
+//              suma += tab2[i][j];
+//            }
+//            
+//            System.out.println();
+//            
+//            if(suma > maxSuma) 
+//            {
+//                maxSuma = suma; //nadpisanie maxSumę sumą aby można było si nadpisać i tej najmniejszej wartości
+//                si = i;
+//            }
+//        }
+//        System.out.println("Max suma: "+ maxSuma + " Wiersz: "+ si);
+//        Random r = new Random();
+//        double[][] tab3 = new double[10][10];
+//        
+//        for (int i = 0; i < 10; i++) 
+//        {
+//            for (int j = 0; j < 10; j++)
+//            {
+//              tab3[i][j] = -0.5 + r.nextDouble() *1;
+//              System.out.print(tab3[i][j] + "\t");
+//            }
+//            
+//            System.out.println();  
+//        }
+//        
+//        System.out.println("1- wyzeruj ujemne, 2- wyzeruj dodatnie");
+//        Scanner s = new Scanner(System.in);
+//        int wybor = s.nextInt();
+//        double srednia =0;
+//        double sumaP=0;
+//        
+//        for (int i = 0; i < 10; i++)
+//        {
+//            for (int j = 0; j < 10; j++) 
+//            {
+//              if (wybor == 1 && tab3[i][j] < 0)
+//              {
+//                  tab3[i][j] = 0;
+//                
+//              }
+//              else if (wybor ==2 && tab3[i][j] > 0)
+//              {
+//                 tab3[i][j] = 0;
+//              }
+//              srednia += tab3[i][j];
+//              if (i==j)
+//              {
+//                  sumaP += tab3[i][j];
+//              }
+//              System.out.println(tab3[i][j]+ "\t");
+//            }         
+//        }
+//        srednia /= 100;
+//        System.out.println("Srednia: "+ srednia);
+//        System.out.println("Srednia na przekatnej: "+ sumaP);
+          
+//        Random r = new Random();
+//        int nb = 20;
+//        boolean[] tabb = new boolean[nb];
+//        int nt = (int)(nb * 0.75);
+//        
+//        while(nt > 0)
+//        {
+//            int pb = (int)(r.nextDouble() * (nb -1)); //losujemy od 0 do nb
+//            
+//            if(!tabb[pb]) //jeżeli tu jest false
+//            {
+//                tabb[pb] = true;
+//                nt--; //odejmowanie nt aby było mniej do wstawiania aż się wszystkich nie postawi
+//            }
+//        }
+//        for(boolean b: tabb)
+//        {
+//            System.out.println(b+ ",");
+//        }
+                   
+    }
+    
+}
+
+        

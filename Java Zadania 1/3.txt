@@ -1,0 +1,269 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
+ */
+
+package com.mycompany.javaapplicationlekcja3;
+
+import java.util.Random;
+import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
+
+/**
+ *
+ * @author adamk
+ */
+
+
+public class JavaApplicationLekcja3 
+{
+    //Metoda sprawdzająca czy w tablicy jest element
+   public static boolean zawiera(char[]tab, char c) //jak tablica zawiera dany znak to zwraca true
+   {
+       for(char ci : tab)
+       {
+           if(ci==c)
+           {
+               return true; //zawiera
+           }
+           
+       }
+         return false; //nie zawiera
+   }
+        //Metoda Split
+        public static String[] split(String txt, char[] separatory)
+        {
+            int n = 0;
+            
+            char[] znaki = txt.toCharArray();
+                    
+            for (int i = 0; i < znaki.length; i++) 
+            {   //pierwszy znak jest już separatorem oraz zawiera separatory
+                if(i > 0 && i < znaki.length-1 && zawiera(separatory,znaki[i])&& !zawiera(separatory,znaki[i-1]))
+               //zliczamy ile mamy sepraratorów omijając te na pocżatku i na końcu tekstu
+                {                
+                   n++; //podliczamy ilość separatorów
+                }
+            }
+            
+            n++; //dodajemy do n 1 aby zawsze części było o 1 więcej (jak się ucina na początku i na końcu)
+            
+            String curr ="";
+            String[] parts = new String[n];
+            int m=0;
+            
+            for(int i=0; i< znaki.length; i++)
+            {
+                char c = znaki[i];  
+                
+                if(!zawiera(separatory,c)) //jeżeli znak nie jest separatorem
+                {
+                    curr += c; //doklejamy kolejne znaki jak nie ma separatora
+                }
+                else if (i > 0 && i < znaki.length-1 && !zawiera(separatory,znaki[i-1]))
+                {
+                    parts[m]=curr + ""; //robi nowy string
+                    m++;
+                    curr = ""; //wyczyszczamy current aby zbierał kolejne znaki
+                    
+                    //jak jest separator to zpisujemy jako nowy leement tablicy do current i zerujemy zmienną current
+                }
+            }
+            parts[m]=curr+""; //doklejamy to co zostało na koniec;
+            
+            return parts;
+        }
+
+    public static void main(String[] args) 
+    {    
+        //Zad.1
+//        Scanner scan = new Scanner(System.in);
+//        
+//        System.out.println("Podaj a:");
+//        int a = scan.nextInt();
+//        System.out.println("Podaj b:");
+//        int b = scan.nextInt();
+//
+//        int[][] tablica1= new int[4][4];
+//        int[][] tablica2= new int[4][4];
+//        
+//        for (int i = 0; i < tablica1.length; i++) 
+//        {
+//            for (int j = 0; j < tablica1[i].length; j++) 
+//            {
+//                tablica1[i][j]= ThreadLocalRandom.current().nextInt(a,b+1);
+//                tablica2[i][j]= ThreadLocalRandom.current().nextInt(a,b+1);
+//            }
+//        }
+//        
+//        System.out.println("Tablica 1");
+//        for(int i = 0; i < tablica1.length; i++)
+//        {
+//            for(int j = 0; j < tablica1[i].length; j++) 
+//            {
+//                System.out.print(tablica1[i][j] + " ");
+//            }
+//
+//            System.out.println();
+//        }
+//        
+//        System.out.println("Tablica 2");
+//        for(int i = 0; i < tablica2.length; i++)
+//        {
+//            for(int j = 0; j < tablica2[i].length; j++) 
+//            {
+//                System.out.print(tablica2[i][j] + " ");
+//            }
+//
+//            System.out.println();
+//        }
+//      
+//         System.out.println("Suma Tablic");
+//         
+//         int[][] suma = new int[4][4];
+//        for(int i = 0; i < tablica1.length; i++)
+//        {
+//            for(int j = 0; j < tablica1[i].length; j++) 
+//            {
+//                suma[i][j]= tablica1[i][j] + tablica2[i][j];
+//                System.out.print(suma[i][j] + " ");
+//            }
+//
+//            System.out.println();
+//        }
+//        
+        //Zad.2
+//        Scanner scan = new Scanner(System.in);
+//
+//        System.out.println("Podaj n:");
+//        int n = scan.nextInt();
+//
+//        char[][] tab = new char[n][n];
+//        
+//        for(int i=0; i < n; i++)
+//        {
+//            for(int j=0; j < n; j++)
+//            {
+//                int kod = ThreadLocalRandom.current().nextInt(97, 123);
+//                tab[i][j] = (char)kod;
+//
+//                System.out.print(tab[i][j] + " ");
+//            }
+//            System.out.println();
+//        }
+//        
+//        System.out.println("samogłoski:");
+//        
+//        char[] samogloski = {'a','e','i','o','u','y'};
+//        
+//        for (int i = 0; i < n; i++) //samogłoski
+//        {
+//            for (int j = 0; j < n; j++) 
+//            {
+//               boolean samogloska = false;
+//               
+//                for (char s: samogloski) 
+//                { //sprawdzenie czy i i j to samogłoski
+//                    if(tab[i][j]==s)
+//                    {
+//                      samogloska=true;
+//                      break;
+//                    }
+//                    
+//                }
+//            if (samogloska)
+//            {
+//               System.out.print(tab[i][j] + ",");
+//            }
+//           
+//            }
+//           
+//        }
+//        
+//        System.out.println("\n"+"spółgłoski:");
+//        
+//        for (int i = 0; i < n; i++) 
+//        {
+//            for (int j = 0; j < n; j++) 
+//            {
+//               boolean samogloska = false;
+//               
+//                for (char s: samogloski) 
+//                {
+//                    if(tab[i][j]==s)
+//                    {
+//                      samogloska=true;
+//                      break;
+//                    }
+//                    
+//                }
+//            if (!samogloska)
+//            {
+//               System.out.print(tab[i][j] + ",");
+//            }
+//           
+//            }
+//           
+//        }
+        
+        //Zad. Split
+        
+        String napis= "Ala ma kota,,tekst-abcd xxx ";
+        char[] sep = {' ',',','-'};
+        String[] parts = split(napis, sep);
+        
+        for(String p: parts)
+        {
+            System.out.println(p);
+        }
+        
+        //Zad. 3
+//        
+//        Scanner scan = new Scanner(System.in);
+//        System.out.println("Podaj tekst:");
+//        String txt = scan.nextLine();  
+//        
+//        
+//        if(txt.length() >= 16)
+//        {  
+//            System.out.println("Podaj n:");
+//            int n = scan.nextInt();
+//
+//            char[][] tab = new char[n][10];
+//
+//            int w = 0;
+//
+//            for(int i = 0; i < n; i++)
+//            {
+//                for (int j = 0; j < 10; j++) 
+//                {
+//                    if(w < txt.length()) //jeżeli się mieścimy w napisie
+//                    {
+//                        tab[i][j] = txt.charAt(w);
+//                        w++;
+//                    }
+//                    else
+//                    {
+//                        tab[i][j]= '0';
+//                    }
+//
+//                }
+//            }
+//
+//            for(int i = 0; i < n; i++)
+//            {
+//                for (int j = 0; j < 10; j++) 
+//                {
+//                    System.out.print(tab[i][j] + " ");
+//
+//                }
+//                System.out.println();
+//            }
+//        }   
+//        else
+//        {
+//            System.out.println("Napis powinien mieć minimum 16 znaków");
+//        }
+    }
+    
+}

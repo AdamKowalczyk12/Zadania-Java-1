@@ -1,0 +1,175 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
+ */
+
+package com.mycompany.javaapplicationlekcja4;
+
+import java.util.Random;
+
+/**
+ *
+ * @author adamk
+ */
+public class JavaApplicationLekcja4 
+{
+                
+    public static void main(String[] args) 
+    {
+        
+       //100 dni- t=1, t=2...
+       double[][] ceny = new double[100][4]; 
+       //0-min, 1-otwarcie, 2-zamknięcie, 3-max
+       
+       Random rand = new Random();
+       
+        for (int i = 0; i < 100; i++) 
+        {
+          //cena otwarcia w chwili t jest równa cenie zamknęcia w chwili t-1
+          double otw = i == 0 ? (40 + rand.nextDouble() * 30) : ceny[i-1][2];
+          //jeżeli i = 0 (pierwszy element) to losujemy, dla kolejnych elementów ceny z chwili i-1 (poprzednia cena zamknięcia) od 2
+          
+          int mnoznik = rand.nextDouble() > 0.5 ? 1 : -1; //losujemy cenę zamknięcia czy będzie na plus czy minus
+          //prawd 50% czy ujemna czy dodatnia
+          
+          double zamk = otw + mnoznik * otw * 0.03 * rand.nextDouble();
+          // razy 3% wachania, cena jest w przedziale 3% bieżącej ceny w obie strony
+          //-1 dla min, 1 dla max    //prawd 50% czy ujemna czy dodatnia
+          //jeżeli większe od 0.5 to 1 jak nie to -1
+    
+          //różnica między ceną otwarcia a ceną zamknięcia
+       
+          double min = otw + -1 * otw * 0.025 * rand.nextDouble(); //min 40 max 70 //2,5 na minusie od ceny otwarcia
+          double max = otw + otw * 0.025 * rand.nextDouble(); //min 40 max 70
+          //maksymalne wahania dla ceny min           
+          //musi być o 2,5% bo jak będzie 5% to będzie maksymalnie do 0,10 a ma być do 0,5;
+          // min i max jest w przedziale 5& od ceny otwarcua
+          
+          ceny[i][0] = Math.round(min*100.0)/100.0; //zaokrąglanie do 2 miejsc po przecinku
+          ceny[i][1] = Math.round(otw*100.0)/100.0;
+          ceny[i][2] = Math.round(zamk*100.0)/100.0;
+          ceny[i][3] = Math.round(max*100.0)/100.0;
+        }
+        
+        for(double[] c : ceny)
+        {
+            double r1=(c[2]-c[1])/c[1]; //różnica między otwarcia a zamknięcia nie może być 3% większa od ceny otwarcia
+            double r2 = (c[3] - c[0])/c[1];//maksymalnie wahania dla cen min i max to 5% ceny otawrcia
+            System.out.println("min: "+ c[0] + ", otw: "+ c[1] + ", zamk: "+ c[2] + ", max: "+ c[3]+", r1: " + r1 + ", r2: " + r2);
+        }
+
+        
+        double[] sk = sredniaKroczaca(ceny);
+        System.out.println("====14 okresowa====");
+        for(double s : sk)
+        {
+            System.out.println(s);
+        }
+        
+       sk = sredniaKroczaca(ceny, 3);
+       
+       System.out.println("====3 okresowa====");
+       
+        for(double s : sk)
+        {
+            System.out.println(s);
+        }
+        
+        System.out.println("====3 okresowa typical====");
+         
+        sk = sredniaKroczaca(ceny, 3, true);
+       
+        for(double s : sk)
+        {
+            System.out.println(s);
+        }
+         
+        System.out.println("====3 okresowa not typical====");
+         
+        sk = sredniaKroczaca(ceny, 3, false);
+       
+        for(double s : sk)
+        {
+            System.out.println(s);
+        }
+    }
+    
+    static double[] sredniaKroczaca(double[][] ceny)
+    {
+        int n = ceny.length - 13; //liczbymy dla 14 okresu średnią
+        int k =0;
+        
+        double[] sk = new double[n]; //(średnia krocząca)
+        
+        for (int i = 13; i < ceny.length; i++) //od 13 bo liczymy od 0
+        {
+           double suma = 0;
+           
+            for (int j = i; j > i-14; j--) //idziemy w tył aby odiwedzić każdy poprzedzający
+            {
+               suma+=ceny[j][2]; //2 bo to cena zamknięcia
+            }
+            
+            double srednia = suma/14;
+            sk[k] = srednia; //wpisujemy do tablicy obliczoną średnią
+            k++; //przesuwamy indeks k o 1
+            //potem przechodzimy do następnego punktu, odilczamy 14 ostatnich miejsc wtecz, 
+            //obliczamy średnią, dodajemy do tablicy wynikowej
+        }
+        return sk;
+    }
+    
+    static double[] sredniaKroczaca(double[][] ceny, int n)
+    {
+        int len = ceny.length - (n -1); //liczbymy dla 14 okresu średnią
+        int k =0;
+        
+        double[] sk = new double[len]; //(średnia krocząca)
+        
+        for (int i = n -1; i < ceny.length; i++)  //od 13 bo lcizbymy od 0
+        {
+           double suma = 0;
+           
+            for (int j = i; j > i-n; j--) //idziemy w tył aby odiwedzić każdy poprzedzający
+            {
+               suma+=ceny[j][2]; //2 bo to cena zamknięcia
+            }
+            
+            double srednia = suma/n;
+            sk[k] = srednia; //wpisujemy do tablicy obliczoną średnią
+            k++;
+        }
+        return sk;
+    }
+    
+     static double[] sredniaKroczaca(double[][] ceny, int n, boolean typical)
+    {
+        int len = ceny.length - (n -1); //liczbymy dla 14 okresu średnią
+        int k =0;
+        
+        double[] sk = new double[len]; //(średnia krocząca)
+        
+        for (int i = n -1; i < ceny.length; i++)  //od 13 bo lcizbymy od 0
+        {
+           double suma = 0;
+           
+            for (int j = i; j > i-n; j--) //idziemy w tył aby odiwedzić każdy poprzedzający
+            {
+                if(typical) //jeśli typical to true
+                {
+                      suma+=(ceny[j][0] + ceny[j][3] + ceny[j][2])/3; //2 bo to cena zamknięcia
+                }
+                else
+                {
+                    suma+=(ceny[j][0] + ceny[j][1] + ceny[j][2]+ ceny[j][3])/4;
+                }
+            }
+            
+            double srednia = suma/n;
+            sk[k] = srednia; //wpisujemy do tablicy obliczoną średnią
+            k++;
+        }
+        return sk;
+    }
+    
+}

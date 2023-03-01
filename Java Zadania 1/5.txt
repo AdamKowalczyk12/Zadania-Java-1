@@ -1,0 +1,171 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
+ */
+
+package com.mycompany.javaapplicationlekcja5;
+
+/**
+ *
+ * @author adamk
+ */
+public class JavaApplicationLekcja5
+{
+
+    public static String zmToZu1(String zm)
+    { //pierwszy znak 
+      if(zm.charAt(0)=='1')
+      {
+          String zu1=""+zm.charAt(0); //pierwszy znak bez zmian więc przypisujemy pierwszy (1/0)
+          for (int i = 1; i < zm.length(); i++) 
+          {
+              if(zm.charAt(i)=='.')
+              {
+                  zu1+='.';
+              }
+              else if (zm.charAt(i)==',')
+              {
+                  zu1+=',';
+              }
+              else
+              {               
+                  zu1 += zm.charAt(i) == '1' ? '0' :'1';      
+              }   
+          }
+          return zu1;
+      }
+      else
+      {
+          return zm;
+      }
+    }
+    
+    public static String rev(String txt) //reverse
+    {
+        String res = "";
+        
+        for(int i = txt.length()-1; i >= 0; i--) 
+        {
+          res += txt.charAt(i);  
+        }
+        return res;
+    }
+    
+    public static String dodaj(String b1, String b2)
+    {
+        //dodawanie od końca
+        String br1 = rev(b1);
+        String br2 = rev(b2);
+    
+        //przenoszenie jedynki z poprzedniego dodawnaia
+        
+        //p1 to będzie ta dłusza liczba
+        int n = 0;
+        String p1 = null;
+        String p2 = null;
+        
+        if(br1.length()>br2.length())
+        {
+            p1 = br1;
+            p2 = br2;
+            n = br1.length();
+        }
+        else
+        {   
+            p1 = br2;
+            p2 = br1;
+            n = br1.length();
+        }
+        
+        int prev = 0; //pożyczki na zera
+        String wynik = "";
+         
+        for (int i = 0; i < n; i++) 
+        {   //0 jako char, konwersja ze znaku na liczbę int, trzeba odjąć nzak 0
+           int bit1 = p1.charAt(i)-'0';
+           int bit2 = i >= p2.length() ? 0 : p2.charAt(i)-'0';
+            //jeżeli i jest większe lub równe od p2.length() to wpisujemy 0, 
+            //jak nie to robimy też taką kowersję jak p1
+            
+           int s = bit1 + bit2 + prev; //prev tylko dla sumy większej od 1
+          
+           //jeżeli suma jest większa od 1 to przekazujemy jedynkę do zmiennej prev
+           //a do wyniku dopisujemy sobie jedynkę
+           if(s == 2)
+           {
+               prev = 1; //przekazywanie 1 dalej do zmiennej prev
+               wynik += 0; //wynik = 0
+           }
+           else if (s == 3)
+           {
+                prev = 1; //przekazywanie 1 dalej
+                wynik += 1; //wynik = 1
+           }
+           else
+           {
+               wynik += s;
+           }
+        }
+        if (prev > 0)
+        {
+            wynik += prev;
+        }
+        return rev(wynik);
+    }
+    
+    static double zu1ToDec(String zu1)
+    {
+        String zm = zmToZu1(zu1);
+        //podział według kropki
+        String[] parts = zm.split("\\."); //tak się splituje dla kropki
+        
+        System.out.println(parts.length);
+        
+        //jeżeli jest równe 1 to jest równe -1, jeżeli 0 to dodatnia
+        int mn = parts[0] == "1" ? -1 : 1;//mnożnik
+        //podział według przecinka
+        String[] parts2 = parts[1].split(",");
+        
+        String pc =rev(parts2[0]); 
+        //część całkowita- odwócona pierwsza część z parts2
+        
+        int d = 0;
+        
+        for(int i=0; i < pc.length(); i++)
+        {
+            if(pc.charAt(i) =='1')
+            {
+              d+= Math.pow(2,i);
+            }
+        }
+        String pf = parts2[1];
+
+        double f = 0;
+
+        int l = -1;
+
+        for(int i = 0; i < pf.length(); i++)
+        {
+            if(pf.charAt(i) == '1')
+            {
+                f += Math.pow(2,l);  //podnosi się do potęgi -1,-2 itp.
+            }
+
+                l--;
+        }
+
+        return mn * (d + f);
+    }
+    
+    public static void main(String[] args)
+    {
+        String zu1=zmToZu1("1.11101,101");
+        System.out.println(zu1);
+        
+        String w = dodaj("110111", "11011");
+        System.out.println(w);
+        
+        double x = zu1ToDec("0.10001,01011"); //-5.xxx
+        System.out.println(x);
+    }
+}

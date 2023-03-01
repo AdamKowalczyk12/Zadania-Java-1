@@ -1,0 +1,374 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package javaapplication1;
+
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
+/**
+ *
+ * @author adamk
+ */
+public class JavaApplication1 
+{
+    
+
+// public static String strJoin(String[] aArr, String sSep) JOIN METODA
+//{
+//    StringBuilder sbStr = new StringBuilder();
+//    for (int i = 0, il = aArr.length; i < il; i++) 
+//    {
+//            if (i > 0)
+//                sbStr.append(sSep);
+//            sbStr.append(aArr[i]);
+//    }
+//        return sbStr.toString();
+//}
+
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) 
+    {
+        
+//        int n = 10;
+//        double[] tab = new double[n];
+//        
+//        Random r = new Random();
+//        
+//        for (int i = 0; i < n; i++) 
+//        {   //nextDouble daje liczbę od 0 do 1;
+//            tab[i] = -5 + r.nextDouble() * 10;
+//            System.out.println(tab[i]);
+//        }
+//        
+//        Arrays.sort(tab); 
+//        
+//        for (int i = 0; i < n; i++) 
+//        {
+//            System.out.println(tab[i]);
+//        }
+//        
+//        if(n % 2==0)
+//        {
+//            int srodek1 = n/2 -1;
+//            int srodek2 = n/2;
+//            
+//            double mediana = (tab[srodek1] + tab[srodek2])/2.0;
+//            System.out.println("Mediana: " + mediana);
+//        
+//        }
+//        else
+//        {
+//            int srodek = n/2;
+//            System.out.println("Mediana: "+ tab[srodek]);
+//        }
+//        
+//        System.out.println("Min: " + tab[0]);
+//        System.out.println("Max: "+ tab[tab.length -1]);
+//        
+//          double p1 = n/4.0;
+//            
+//          if(p1 > n/4)
+//          {
+//              int q1 = n/4 - 1;
+//              int q2 = n/4;
+//              
+//              double kwartyl1 = (tab[q1]+ tab[q2])/2.0;
+//              System.out.println("Kwartyl 1: "+ kwartyl1);
+//          }
+//          else
+//          {
+//              int q1 = n/4-1;
+//              System.out.println("Kwartyl 1"+ tab[q1]);
+//          }
+//          
+//          double p3 = 3*n/4.0;
+//          if (p3 > 3*n/4)
+//          {
+//              int q1 = 3*n/4;
+//              int q2 = 3*n/4+1;
+//              
+//             
+//              double kwartyl3 = (tab[q1]+ tab[q2])/2.0;
+//              System.out.println("Kwartyl 3: "+ kwartyl3);
+//          }
+//          else
+//          {
+//              int q1 = 3*n/4-1;
+//              System.out.println("Kwartyl 3: "+ tab[q1]);
+//          }
+          
+        
+        Random r = new Random();
+//        
+//        int[][] tab2 = new int[10][5];
+//        
+//        int maxSuma= Integer.MIN_VALUE; //najmniejsza wartośc jaką int może przyjąć
+//        int si = 0; //indeks wiersza
+//        
+//        for(int i = 0; i <tab2.length; i++) 
+//        {
+//            int suma=0;
+//            for (int j = 0; j < tab2[i].length; j++)
+//            {  
+//              tab2[i][j] = (int)(r.nextDouble()*20);
+//              System.out.println(tab2[i][j]+ "\t");
+//              
+//              suma += tab2[i][j];
+//            }
+//            
+//            System.out.println();
+//            
+//            if(suma > maxSuma)
+//            {
+//                maxSuma = suma;
+//                si = i;
+//            }
+//        }
+//        System.out.println("Max suma: "+ maxSuma + " Wiersz: "+ si);
+        
+//        double[][] tab3 = new double[10][10];
+//        
+//        for (int i = 0; i < 10; i++) 
+//        {
+//            for (int j = 0; j < 10; j++)
+//            {
+//              tab3[i][j] = -5 + r.nextDouble() *10;
+//              System.out.print(tab3[i][j] + "\t");
+//            }
+//            
+//            System.out.println();  
+//        }
+//        
+//        System.out.println("1- wyzeruj ujemne, 2- wyzeruj dodatnie");
+//        Scanner s = new Scanner(System.in);
+//        int wybor = s.nextInt();
+//        double srednia =0;
+//        double sumaP=0;
+//        
+//        for (int i = 0; i < 10; i++)
+//        {
+//            for (int j = 0; j < 10; j++) 
+//            {
+//              if (wybor == 1 && tab3[i][j] < 0)
+//              {
+//                  tab3[i][j] = 0;
+//                
+//              }
+//              else if (wybor ==2 && tab3[i][j] > 0)
+//              {
+//                 tab3[i][j] = 0;
+//              }
+//              srednia += tab3[i][j];
+//              if (i==j)
+//              {
+//                  sumaP += tab3[i][j];
+//              }
+//              System.out.println(tab3[i][j]+ "\t");
+//            }
+//            
+//            srednia /= 100;
+//            System.out.println("Srednia: "+ srednia);
+//            System.out.println("Srednia na przekatnej: "+ sumaP);
+//  
+//        }
+//        Random r = new Random();
+//        int nb = 100;
+//        boolean[] tabb = new boolean[nb];
+//        int nt = (int)(100 * 0.75);
+//        
+//        while(nt > 0)
+//        {
+//            int pb = (int)(r.nextDouble() * (nb -1));
+//            
+//            if(!tabb[pb])
+//            {
+//                tabb[pb] = true;
+//                nt--;
+//            }
+//        }
+//        for(boolean b: tabb)
+//        {
+//            System.out.println(b+ ",");
+//        }
+        
+        
+
+//    String myStringArray[] = {"Something","Nothing"}; 
+//
+//    for (int i = 0; i<myStringArray.length; i++)
+//    {
+//        for (int j = 0; j< myStringArray[i].length(); j++)
+//        {
+//             char aChar = myStringArray[i].charAt(j);
+//
+//             if (65 <= aChar && aChar<=90){
+//                aChar = (char)( (aChar + 32) ); 
+//             }
+//             System.out.print(aChar);
+//        }
+//
+//     }
+    
+//     System.out.println(increment("12751"));
+        
+//        generatePalindroms("","abc",3);
+//        generatePalindromsAll("abc");
+        
+//        String[] slownik = new String[0];
+//        
+//        String odp ="n";
+//        
+//        Scanner s = new Scanner(System.in);
+//        
+//        while(odp.equals("t") || odp.equals("n"))
+//        {
+//            String slowo = generujSlowo();
+//            
+//            System.out.println("Czy "+ slowo + "to slowo? (t//n) lub inny znak aby zakonczyc");
+//            odp = s.nextLine();
+//            
+//            if(odp.equals("t"))
+//            {
+//                slownik = Arrays.copyOf(slownik, slownik.length+ 1); //kopiujemy słownik powiększony o 1 
+//                slownik[slownik.length - 1] = slowo;        
+//            }
+//        }
+//        System.out.println(Arrays.toString(slownik));
+        
+         //CIĄG FIBONACCIEGO
+//        System.out.println("Podaj liczbe:"); 
+//        Scanner s = new Scanner(System.in);
+//        double liczba = s.nextDouble();
+//        double pierwszy=0;
+//        double drugi=1;
+//        double wynik=0;
+//        for (int i = 0; i < liczba; i++) 
+//        {
+//            pierwszy = drugi;
+//            drugi = wynik;
+//            System.out.println(wynik);
+//            wynik= pierwszy+drugi;
+//        }
+        
+System.out.println("Podaj liczbę:");
+Scanner s = new Scanner(System.in);
+double liczba = s.nextDouble();
+double pierwszy=0;
+double drugi=1;
+double wynik=0;
+        for (int i = 0; i < liczba; i++) 
+        {
+          pierwszy=drugi;
+          drugi=wynik;
+          System.out.println(wynik);
+          wynik=pierwszy+drugi;
+        }
+
+        //SPRAWDZENIE CZY WYRAZ JEST PALINDROMEM
+//        System.out.println("Podaj wyraz:");
+//        Scanner s = new Scanner(System.in);
+//        String wyraz = s.next().toUpperCase();
+//        String wyrazOdw= "";
+//        for (int i = wyraz.length()-1; i >=0 ; i--)
+//        {
+//            wyrazOdw += wyraz.charAt(i); //doklejanie liter od końca
+//        }
+//        if (wyraz.equals(wyrazOdw))
+//        {
+//           System.out.println("Wyraz jest palindromem");  
+//        }
+//        else
+//        {
+//            System.out.println("Wyraz nie jest palindromem");
+//        }
+//   
+    }
+  
+    //    FUNKCJA INCREMENT
+//    public static String increment(String number)
+//    {
+//        char[] znaki = number.toCharArray();
+//        int m = 1;
+//        int liczba = 0;
+//        for(int i = znaki.length-1; i>=0; i--)
+//        {
+//            int kod =(int)znaki[i]; //rzutowanie ze znaku na liczbę na kod
+//            int cyfra = kod - 48;
+//            liczba+=cyfra * m;
+//            System.out.println(cyfra);
+//            m*=10; //mnożymy od tyłu (1*1, 5*10, 7*100...) te mnożenia dodajemy do liczby
+//        }
+//        
+//        liczba++; //zwiększenie o 1
+        
+//       for(char c: number.toCharArray()) 
+//       {
+//           int kod = (int)c;
+//           int cyfra = kod - 48; //od nzaku ascii odejmujemy 48 i to daje wybraną liczbę
+//           System.out.println(cyfra);
+//       }
+
+//       return Integer.toString(liczba); //da liczbę zwiększoną o 1 (pusty string i liczba automatycznie skonwertuje)
+//    }
+
+// GENERATOR PALINDROMÓW
+    //current- ten który uzupełniamy- pusty napis
+    //max- maksymalna liczba liter
+//   public static void generatePalindroms(String current, String letters, int max)
+//   {
+//       if(current.length() == max)
+//       {
+//           String palindrom = "" + current;
+//           for (int i = current.length()-1; i >= 0; i--) 
+//           {
+//               palindrom += current.charAt(i);
+//           }
+//           
+//           System.out.println(palindrom);
+//       }
+//       else
+//       {
+//          for(char c: letters.toCharArray()) 
+//          {
+//            String temp = current;
+//            current += c; //doklejanie drugiego znaku
+//            generatePalindroms(current, letters, max); 
+//            current = temp; //doklejanie trzeciego znaku
+//          }
+//       }
+//      
+//   }
+//    public static void generatePalindromsAll(String txt) //dla dwuelementowych
+//    {
+//        for (int i =1; i<=txt.length(); i++)
+//        {
+//            generatePalindroms("",txt,i);
+//        }
+//    }
+    
+//    GENEROWANIE LOSOWYCH STRINGÓW Z MAŁYCH LITER I DODAWANIE ICH DO SŁOWNIKA
+    
+//    private static String generujSlowo()
+//    {
+//        int dlugosc = ThreadLocalRandom.current().nextInt(3, 8); //losowanie od 3 do 8 liter
+//       
+//        String slowo= "";
+//        
+//        for (int i = 0; i < dlugosc; i++) 
+//        {
+//           //literki na ascii są od 97 do 122
+//           int kod = ThreadLocalRandom.current().nextInt(97,123);
+//           char znak = (char)kod; //znak to jest char rzutowany kod
+//           slowo +=znak;
+//        }
+//      
+//        return slowo;
+//    }
+    
+}
